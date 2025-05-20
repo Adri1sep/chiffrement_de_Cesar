@@ -37,5 +37,4 @@ def decryptage(cle,fichier="message_encrypte.txt"):
         texte += i
     print(texte)
     return texte
-decryptage(4)
 
