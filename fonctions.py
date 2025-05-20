@@ -49,7 +49,13 @@ def cryptage(liste, cle_de_cryptage):
         # print("texte_chiffre[indice]", texte_chiffre[indice])
         index = alphabet.find(liste[indice])
         # print("Index", index)
-        new_character = alphabet[index + cle_de_cryptage]
+        decalage = index + cle_de_cryptage
+        if decalage > 25:
+            decalage = decalage - 25
+        elif decalage < -26:
+            decalage = decalage + 26
+
+        new_character = alphabet[decalage]
         # print("new_character", new_character)
         liste[indice] = new_character
 
