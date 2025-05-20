@@ -9,7 +9,7 @@ def enlever_caracteres_speciaux(mot):
     normalized_word = unicodedata.normalize('NFKD',mot)
     return ''.join([char for char in normalized_word if not unicodedata.combining(char)])
 
-#ouvrir le fichier et renvoyer la liste, exemple lire_fichier("texte_code.txt")
+#ouvrir le fichier et renvoyer la liste
 def lire_fichier(fichier):
     #tester si le fichier existe
     if not os.path.isfile(fichier):
@@ -34,3 +34,21 @@ def ecrire_fichier(contenu, fichier):
     f.seek(0)
     f.write(contenu)
     f.close()
+
+def decryptage(cle,fichier="message_encrypte.txt"):
+    import string
+    alphabet = string.ascii_lowercase
+    liste_alphabet = list(alphabet)
+    cle %= 26
+    liste_texte = lire_fichier(fichier)
+
+    for i in range(len(liste_texte)):
+        for j in liste_alphabet:
+            if liste_texte[i].lower() == j:
+                liste_texte[i] = alphabet[liste_alphabet.index(j) - cle]
+    texte=""
+    for i in liste_texte:
+        texte += i
+    print(texte)
+    return texte
+
