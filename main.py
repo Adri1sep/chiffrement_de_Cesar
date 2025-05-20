@@ -16,9 +16,9 @@ import string
 import os
 def ouverture_fichier(fichier="texte_code.txt"):
     # teste si le fichier existe
-    full_filename = os.path.join(dossier,fichier)
+    """full_filename = os.path.join(dossier,fichier)
     if not os.path.isfile(full_filename):
-        raise RuntimeError(f'Je ne trouve pas le fichier {full_filename} !')
+        raise RuntimeError(f'Je ne trouve pas le fichier {full_filename} !')"""
 
 # Ouvrir le fichier en mode lecture
     with open("texte_code.txt", "r", encoding = "utf-8") as fio:
