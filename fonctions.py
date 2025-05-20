@@ -2,7 +2,6 @@
 """
 
 import unicodedata, os
-import string
 
 #enlever les accents
 def enlever_caracteres_speciaux(mot):
@@ -10,7 +9,7 @@ def enlever_caracteres_speciaux(mot):
     normalized_word = unicodedata.normalize('NFKD',mot)
     return ''.join([char for char in normalized_word if not unicodedata.combining(char)])
 
-#ouvrir le fichier et renvoyer la liste
+#ouvrir le fichier et renvoyer la liste, exemple lire_fichier("texte_code.txt")
 def lire_fichier(fichier):
     #tester si le fichier existe
     if not os.path.isfile(fichier):
@@ -42,7 +41,7 @@ def cryptage(liste, cle_de_cryptage):
     # texte_chiffre = list(texte)
     # cle_de_chiffrage = 5
     alphabet = string.ascii_lowercase
-    print("alphabet: ", alphabet)
+    # print("alphabet: ", alphabet)
 
     for indice in range(len(liste)):
         # print("indice", indice)
@@ -51,17 +50,17 @@ def cryptage(liste, cle_de_cryptage):
         # print("Index", index)
         decalage = index + cle_de_cryptage
         if decalage > 25:
-            decalage = decalage - 25
+            decalage = decalage - 26
         elif decalage < -26:
-            decalage = decalage + 26
+            decalage = decalage + 25
 
         new_character = alphabet[decalage]
         # print("new_character", new_character)
         liste[indice] = new_character
-
-    print("texte_chiffre", texte_chiffre)
+    return liste
 
 def decryptage(cle,fichier="message_encrypte.txt"):
+    import string
     alphabet = string.ascii_lowercase
     liste_alphabet = list(alphabet)
     liste_texte = lire_fichier(fichier)
@@ -80,3 +79,14 @@ def decryptage(cle,fichier="message_encrypte.txt"):
         texte += i
     print(texte)
     return texte
+
+#calculer proba
+def prévoir_bon_texte(liste_lettres):
+    texte = ''.join(liste_lettres)
+    #premier test, lettres seules
+    test1=[" q "," w "," e "," r "," t "," y "," u "," i "," o "," p "," s "," d "," f "," g "," h "," j "," k "," l "," z "," x "," c "," v "," b "," n "," m "]
+    for i in test1:
+        if i in texte:
+            return False
+    else:
+        return True
