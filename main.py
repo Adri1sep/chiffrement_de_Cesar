@@ -1,3 +1,4 @@
+
 '''---------------Mini-Projet A - Chiffrement de César----------------------
 
     - Killian Berteaud
@@ -9,10 +10,11 @@ Cours MGA802, Session Été 2025
 
 #PROGRAMME PRINCIPAL
 
+
+
 import string
 import os
-
-def ouverture_fichier(dossier, fichier="message.txt"):
+def ouverture_fichier(fichier="texte_code.txt"):
     # teste si le fichier existe
     full_filename = os.path.join(dossier,fichier)
     if not os.path.isfile(full_filename):
@@ -27,6 +29,8 @@ def ouverture_fichier(dossier, fichier="message.txt"):
 with open("message_encrypte.txt", "w") as fio:
     contenu=""
     fio.write(contenu)
+
+ouverture_fichier()
 
 
 alphabet = string.ascii_lowercase
