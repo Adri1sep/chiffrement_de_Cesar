@@ -60,6 +60,7 @@ def cryptage(liste, cle_de_cryptage):
     return liste
 
 def decryptage(cle,fichier="message_encrypte.txt"):
+    import string
     alphabet = string.ascii_lowercase
     liste_alphabet = list(alphabet)
     cle %= 26
@@ -74,3 +75,14 @@ def decryptage(cle,fichier="message_encrypte.txt"):
         texte += i
     print(texte)
     return texte
+
+#calculer proba
+def prévoir_bon_texte(liste_lettres):
+    texte = ''.join(liste_lettres)
+    #premier test, lettres seules
+    test1=[" q "," w "," e "," r "," t "," y "," u "," i "," o "," p "," s "," d "," f "," g "," h "," j "," k "," l "," z "," x "," c "," v "," b "," n "," m "]
+    for i in test1:
+        if i in texte:
+            return False
+    else:
+        return True
