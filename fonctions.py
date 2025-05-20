@@ -31,6 +31,8 @@ def enlever_caracteres_speciaux(mot):
     normalized_word = unicodedata.normalize('NFKD',mot)
     return ''.join([char for char in normalized_word if not unicodedata.combining(char)])
 
+"""def decodage(cle,message="message_encrypte"):"""
+
 
 def ouverture_fichier(fichier="texte_code.txt"):
     # teste si le fichier existe
@@ -46,12 +48,11 @@ def ouverture_fichier(fichier="texte_code.txt"):
 
 # On crée un fichier txt et on écrit dedans
 with open("message_encrypte.txt", "w") as fio:
-    contenu=""
     fio.write(contenu)
 
 ouverture_fichier()
 
-
+import string
 alphabet = string.ascii_lowercase
 
 print(alphabet)
