@@ -2,6 +2,7 @@
 """
 
 import unicodedata, os
+import string
 
 #enlever les accents
 def enlever_caracteres_speciaux(mot):
