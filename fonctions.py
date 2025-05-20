@@ -20,3 +20,16 @@ def lire_fichier(fichier):
     liste=list(texte_fichier)
     f.close()
     return liste
+
+def decryptage(cle,fichier="message_encrypte.txt"):
+    import string
+    alphabet = string.ascii_lowercase
+    liste_alphabet = list(alphabet)
+    cle %= 26
+    liste_texte = lire_fichier(fichier)
+
+    for i in range(len(liste_texte)):
+        for j in liste_alphabet:
+            if liste_texte[i] == j:
+                liste_texte[i] = alphabet[liste_alphabet.index(j) - cle]
+                print(liste_texte)
