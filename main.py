@@ -30,10 +30,18 @@ with open("message_encrypte.txt", "w") as fio:
 
 
 alphabet = string.ascii_lowercase
+texte = "motdepasse"
+# print(alphabet)
 
-print(alphabet)
+cle_de_chiffrage = 5
+texte_chiffre = ""
 
-alphabet.find("t")
+for i in alphabet:
+    # print(i)
+    texte_chiffre = i
+    print(texte_chiffre)
+
+# alphabet.find("t")
 
 new_character = alphabet[8]
 
