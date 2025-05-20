@@ -56,7 +56,12 @@ def cryptage(liste, cle_de_cryptage):           #Fonction qui crypte le texte av
         texte_crypte += i                           #Chaque caractère de la liste est ajouté à notre texte
     return texte_crypte                             #On retourne la chaine cryptée
 
-def decryptage(cle,fichier):
+        new_character = alphabet[decalage]
+        # print("new_character", new_character)
+        liste[indice] = new_character
+
+
+def decryptage(cle,fichier="message_encrypte.txt"):
     alphabet = string.ascii_lowercase
     liste_alphabet = list(alphabet)
     liste_texte = lire_fichier(fichier)
@@ -74,6 +79,7 @@ def decryptage(cle,fichier):
     texte=""
     for i in liste_texte:
         texte += i
+    print(texte)
     return texte
 
 #deviner si le texte est francais grâce à un dictionnaire trouvé sur https://github.com/chrplr/openlexicon/blob/master/datasets-info/Liste-de-mots-francais-Gutenberg/liste.de.mots.francais.frgut.txt
