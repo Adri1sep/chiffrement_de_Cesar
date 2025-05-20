@@ -1,7 +1,7 @@
 
 '''---------------Mini-Projet A - Chiffrement de César----------------------
 
-    - Killian Berteaud
+    - Kilian Berteaud
     - Adrien Sepierre
     - Cyril Traineau
 
