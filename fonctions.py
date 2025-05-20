@@ -64,13 +64,17 @@ def cryptage(liste, cle_de_cryptage):
 def decryptage(cle,fichier="message_encrypte.txt"):
     alphabet = string.ascii_lowercase
     liste_alphabet = list(alphabet)
-    cle %= 26
     liste_texte = lire_fichier(fichier)
 
     for i in range(len(liste_texte)):
-        for j in liste_alphabet:
-            if liste_texte[i].lower() == j:
-                liste_texte[i] = alphabet[liste_alphabet.index(j) - cle]
+        for lettre in liste_alphabet:
+            if liste_texte[i].lower() == lettre:
+                index_original = alphabet.index(lettre)
+                index_dechiffre = index_original - cle
+                if index_dechiffre < 0:
+                    index_dechiffre %= 26
+                liste_texte[i] = alphabet[index_dechiffre]
+                break
     texte=""
     for i in liste_texte:
         texte += i
