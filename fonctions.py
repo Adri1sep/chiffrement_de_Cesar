@@ -9,7 +9,7 @@ def enlever_caracteres_speciaux(mot):
     normalized_word = unicodedata.normalize('NFKD',mot)
     return ''.join([char for char in normalized_word if not unicodedata.combining(char)])
 
-#ouvrir le fichier et renvoyer la liste
+#ouvrir le fichier et renvoyer la liste, exemple lire_fichier("texte_code.txt")
 def lire_fichier(fichier):
     #tester si le fichier existe
     if not os.path.isfile(fichier):
