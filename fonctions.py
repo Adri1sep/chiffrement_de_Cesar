@@ -20,3 +20,17 @@ def lire_fichier(fichier):
     liste=list(texte_fichier)
     f.close()
     return liste
+
+#écrire dans le fichier le contenu
+def ecrire_fichier(contenu, fichier):
+    # tester si le fichier existe
+    if not os.path.isfile(fichier):
+        raise RuntimeError(f'Je ne trouve pas le fichier {fichier} !')
+    #lire le fichier
+    f = open(fichier, "w", encoding='utf-8')
+    #enlever le contenu
+    f.truncate()
+    #écrire le nouveau
+    f.seek(0)
+    f.write(contenu)
+    f.close()
