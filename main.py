@@ -12,7 +12,7 @@ Cours MGA802, Session Été 2025
 import string
 import os
 
-def ouverture_fichier(dossier, fichier="message.txt"):
+def ouverture_fichier(dossier, fichier="texte_code.txt"):
     # teste si le fichier existe
     full_filename = os.path.join(dossier,fichier)
     if not os.path.isfile(full_filename):
