@@ -1,7 +1,7 @@
 import string
 alphabet = string.ascii_lowercase
 liste_alphabet = list(alphabet)
-cle=4
+cle=30
 cle = cle%26
 with open("test_texte.txt", "r", encoding = "utf-8") as fio:
 # Lire le contenu du fichier
@@ -12,3 +12,6 @@ with open("test_texte.txt", "r", encoding = "utf-8") as fio:
 for i in range(len(liste_texte)):
     for j in liste_alphabet:
         if liste_texte[i] == j:
+            liste_texte[i] = alphabet[liste_alphabet.index(j)-cle]
+            print(liste_texte)
+
