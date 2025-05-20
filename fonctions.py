@@ -37,21 +37,30 @@ def ecrire_fichier(contenu, fichier):
     f.close()
 
 #Fonction qui crypte le texte en entrée:
-def cryptage(liste, cle_de_cryptage):           #Fonction qui crypte le texte avec le chiffrement de César
-    alphabet = string.ascii_lowercase           #On créé une chaîne de caractères qui contient l'alphabet
-    for indice in range(len(liste)):            #On parcourt la liste de mots à crypter
-        index = alphabet.find(liste[indice])    #On récupère la position dans l'alphabet de la lettre issu de la liste
-        decalage = index + cle_de_cryptage      #On récupère le décalage souhaité en fonction de la clé de cryptage
-        if decalage > 25:                       #Les indices de l'alphabet vont de 0 à 25, on veut rester dans cette marge
-            decalage = decalage - 26            #En retranchant 26 on revient au début de l'alphabet
-        elif decalage < -26:                    #Si la clé est négative, décalage vers la gauche dans l'alphabet
-            decalage = decalage + 25            #On rajoute 25, pour rester dans l'alphabet
-        new_character = alphabet[decalage]      #La lettre cryptée est prise dans l'alphabet avec sa nouvelle position
-        liste[indice] = new_character           #La lettre initiale est remplacée par la lettre cryptée.
-    return liste                                #On retourne la liste crypté
+def cryptage(liste, cle_de_cryptage):
+    # texte = "motdepasse"
+    # texte_chiffre = list(texte)
+    # cle_de_chiffrage = 5
+    alphabet = string.ascii_lowercase
+    print("alphabet: ", alphabet)
+
+    for indice in range(len(liste)):
+        # print("indice", indice)
+        # print("texte_chiffre[indice]", texte_chiffre[indice])
+        index = alphabet.find(liste[indice])
+        # print("Index", index)
+        decalage = index + cle_de_cryptage
+        if decalage > 25:
+            decalage = decalage - 25
+        elif decalage < -26:
+            decalage = decalage + 26
+
+        new_character = alphabet[decalage]
+        # print("new_character", new_character)
+        liste[indice] = new_character
+
 
 def decryptage(cle,fichier="message_encrypte.txt"):
-    import string
     alphabet = string.ascii_lowercase
     liste_alphabet = list(alphabet)
     liste_texte = lire_fichier(fichier)
