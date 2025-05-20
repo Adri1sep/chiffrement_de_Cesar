@@ -1,3 +1,4 @@
+
 '''---------------Mini-Projet A - Chiffrement de César----------------------
 
     - Killian Berteaud
@@ -6,7 +7,9 @@
 
 Cours MGA802, Session Été 2025
 '''
+
 #PROGRAMME PRINCIPAL
 
 import ...
+
 
