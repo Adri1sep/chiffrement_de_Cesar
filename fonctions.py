@@ -30,8 +30,12 @@ def decryptage(cle,fichier="message_encrypte.txt"):
 
     for i in range(len(liste_texte)):
         for j in liste_alphabet:
-            if liste_texte[i] == j:
+            if liste_texte[i].lower() == j:
                 liste_texte[i] = alphabet[liste_alphabet.index(j) - cle]
-                print(liste_texte)
-decryptage(-22,"test_texte.txt")
+    texte=""
+    for i in liste_texte:
+        texte += i
+    print(texte)
+    return texte
+decryptage(4)
 
