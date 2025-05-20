@@ -9,6 +9,3 @@ Cours MGA802, Session Été 2025
 '''
 
 #PROGRAMME PRINCIPAL
-
-import string
-import os
