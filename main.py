@@ -21,9 +21,10 @@ def ouverture_fichier(fichier="texte_code.txt"):
         raise RuntimeError(f'Je ne trouve pas le fichier {full_filename} !')
 
 # Ouvrir le fichier en mode lecture
-    with open("message.txt", "r", encoding = "utf-8") as fio:
+    with open("texte_code.txt", "r", encoding = "utf-8") as fio:
 # Lire le contenu du fichier
         contenu = fio.read()
+        print(contenu)
 
 # On crée un fichier txt et on écrit dedans
 with open("message_encrypte.txt", "w") as fio:
