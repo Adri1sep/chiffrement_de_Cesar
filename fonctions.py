@@ -59,7 +59,6 @@ def cryptage(liste, cle_de_cryptage):
         # print("new_character", new_character)
         liste[indice] = new_character
 
-    print("texte_chiffre", texte_chiffre)
 
 def decryptage(cle,fichier="message_encrypte.txt"):
     alphabet = string.ascii_lowercase
