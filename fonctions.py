@@ -2,6 +2,7 @@
 """
 
 import unicodedata, os
+import string
 
 #enlever les accents
 def enlever_caracteres_speciaux(mot):
@@ -21,6 +22,24 @@ def lire_fichier(fichier):
     f.close()
     return liste
 
+#Fonction qui crypte le texte en entrée:
+def cryptage(liste, cle_de_cryptage):
+    # texte = "motdepasse"
+    # texte_chiffre = list(texte)
+    # cle_de_chiffrage = 5
+    alphabet = string.ascii_lowercase
+    print("alphabet: ", alphabet)
+
+    for indice in range(len(liste)):
+        # print("indice", indice)
+        # print("texte_chiffre[indice]", texte_chiffre[indice])
+        index = alphabet.find(liste[indice])
+        # print("Index", index)
+        new_character = alphabet[index + cle_de_cryptage]
+        # print("new_character", new_character)
+        liste[indice] = new_character
+
+    print("texte_chiffre", texte_chiffre)
 def decryptage(cle,fichier="message_encrypte.txt"):
     import string
     alphabet = string.ascii_lowercase
