@@ -8,6 +8,8 @@
 Cours MGA802, Session Été 2025
 '''
 
+#PROGRAMME PRINCIPAL
+
 from fonctions import *
 import string
 
@@ -16,13 +18,12 @@ if __name__ == "__main__":
     print("Bienvenue sur le chiffrement de César")
     int(input("\nVoulez crypter (1) ou décrypter (0): "))
     cle = int(input("Quelle est votre clé de décryptage: "))
+liste = lire_fichier("texte_code.txt")
+print(liste)
+cle_de_cryptage = 6
+decryptage(-20)
+#cryptage(liste, cle_de_cryptage)
 
-    # liste = lire_fichier("texte_code.txt")
-    # print(liste)
-    texte = "motdepasseacrypter"
-    liste = list(texte)
-    liste_crypte = cryptage(liste, cle)
+# texte = "motdepasseacrypter"
+# liste = list(texte)
 
-    print(liste_crypte)
-    cle = -20
-    decryptage(cle)
