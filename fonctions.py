@@ -65,7 +65,7 @@ def decryptage(cle,fichier="message_encrypte.txt"):
     alphabet = string.ascii_lowercase
     liste_alphabet = list(alphabet)
     liste_texte = lire_fichier(fichier)
-    if cle < 0:
+    if cle < 0 or cle > 25:
         cle %= 26
     for i in range(len(liste_texte)):
         for lettre in liste_alphabet:
