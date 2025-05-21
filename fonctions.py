@@ -36,7 +36,7 @@ def ecrire_fichier(contenu, fichier):
     f.write(contenu)
     f.close()
 
-#Fonction qui crypte le texte en entrée:
+#Fonction qui crypte le texte en entrée :
 def cryptage(liste, cle_de_cryptage):
     # texte = "motdepasse"
     # texte_chiffre = list(texte)
@@ -104,11 +104,11 @@ def prevoir_bon_texte(liste_lettres):
 def brute_force(fichier="message_encrypte.txt"):
     alphabet = string.ascii_lowercase
     liste_alphabet = list(alphabet)
-    liste_texte = lire_fichier(fichier)
     for i in range(len(liste_alphabet)):
-        if prevoir_bon_texte(decryptage(i,fichier)) == True:
+        if prevoir_bon_texte(decryptage(i, fichier)):
             print(f"La clé pour décrypter le fichier est : {i}")
             print(f"Le message décrypté est le suivant : \n{decryptage(i,fichier)}")
             return i, decryptage(i,fichier)
         else:
             continue
+    return None
