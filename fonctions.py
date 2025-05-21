@@ -93,10 +93,8 @@ def prévoir_bon_texte(liste_lettres):
     for i in mots:
         if i in texte:
             score+=1
-    print(score)
     #on compte le nombre de mots dans le texte
     nb_mots=len(texte.split(" "))
-    print(nb_mots)
     #le texte est francais si plus de 80% des mots sont détectés comme francais
     if score>0.8*nb_mots:
         return True
