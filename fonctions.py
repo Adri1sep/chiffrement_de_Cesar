@@ -60,6 +60,7 @@ def cryptage(liste, cle_de_cryptage):
     return liste
 
 def decryptage(cle,fichier="message_encrypte.txt"):
+    import string
     alphabet = string.ascii_lowercase
     liste_alphabet = list(alphabet)
     liste_texte = lire_fichier(fichier)
