@@ -9,7 +9,7 @@ def enlever_caracteres_speciaux(mot):
     normalized_word = unicodedata.normalize('NFKD',mot)
     return ''.join([char for char in normalized_word if not unicodedata.combining(char)])
 
-#ouvrir le fichier et renvoyer la liste, exemple lire_fichier("texte_code.txt")
+#ouvrir le fichier et renvoyer la liste, exemple lire_fichier("message.txt")
 def lire_fichier(fichier):
     #tester si le fichier existe
     if not os.path.isfile(fichier):
@@ -56,7 +56,7 @@ def cryptage(liste, cle_de_cryptage):           #Fonction qui crypte le texte av
         texte_crypte += i                           #Chaque caractère de la liste est ajouté à notre texte
     return texte_crypte                             #On retourne la chaine cryptée
 
-def decryptage(cle,fichier="message_encrypte.txt"):
+def decryptage(cle,fichier):
     alphabet = string.ascii_lowercase
     liste_alphabet = list(alphabet)
     liste_texte = lire_fichier(fichier)
@@ -96,7 +96,7 @@ def prevoir_bon_texte(liste_lettres):
     else:
         return False
 
-def brute_force(fichier="message_encrypte.txt"):
+def brute_force(fichier):
     alphabet = string.ascii_lowercase
     liste_alphabet = list(alphabet)
     for i in range(len(liste_alphabet)):

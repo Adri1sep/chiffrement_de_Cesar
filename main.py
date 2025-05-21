@@ -19,7 +19,7 @@ if __name__ == "__main__":
 
     if choix == 1:
         cle = int(input("Rentrez votre clé de cryptage: "))
-        fichier = input("Spécifiez le fichier à crypter: ")         #texte_code.txt
+        fichier = input("Spécifiez le fichier à crypter: ")         #message.txt
         liste = lire_fichier(fichier)
         # print(liste)
         liste_crypte = cryptage(liste, cle)
