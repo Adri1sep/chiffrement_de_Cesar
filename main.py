@@ -27,6 +27,13 @@ if __name__ == "__main__":
         print(liste_crypte)
 
     elif choix == 0:
-        cle = int(input("Quelle est votre clé de décryptage? "))
-        fichier = input("Spécifier le fichier à décrypter: ")
-        decryptage(cle)
+        cle_connue = int(input("Connaissez vous la clé de décryptage? Oui (1) / Non (0): "))
+        if cle_connue == 1:
+            cle = int(input("Quelle est votre clé de décryptage? "))
+            fichier = input("Spécifier le fichier à décrypter: ")
+            texte_decrypte = decryptage(cle)
+            print("\nVotre message décrypté est le suivant:")
+            print(texte_decrypte)
+        elif cle_connue == 0:
+            fichier = input("Spécifier le fichier à décrypter en brute force: \n")
+            brute_force(fichier)
