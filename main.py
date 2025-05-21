@@ -16,7 +16,7 @@ import string
 liste = lire_fichier("texte_code.txt")
 print(liste)
 cle_de_cryptage = 6
-
+decryptage(-20)
 #cryptage(liste, cle_de_cryptage)
 
 # texte = "motdepasseacrypter"
