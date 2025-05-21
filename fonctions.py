@@ -82,7 +82,7 @@ def decryptage(cle,fichier="message_encrypte.txt"):
     return texte
 
 #deviner si le texte est francais grâce à un dictionnaire trouvé sur https://github.com/chrplr/openlexicon/blob/master/datasets-info/Liste-de-mots-francais-Gutenberg/liste.de.mots.francais.frgut.txt
-def prévoir_bon_texte(liste_lettres):
+def prevoir_bon_texte(liste_lettres):
     score=0
     texte = ''.join(liste_lettres)
     # lire le dico (preciser l’encoding pour les accents)
@@ -106,7 +106,7 @@ def brute_force(fichier="message_encrypte.txt"):
     liste_alphabet = list(alphabet)
     liste_texte = lire_fichier(fichier)
     for i in range(len(liste_alphabet)):
-        if prévoir_bon_texte(decryptage(i,fichier)) == True:
+        if prevoir_bon_texte(decryptage(i,fichier)) == True:
             print(f"La clé pour décrypter le fichier est : {i}")
             print(f"Le message décrypté est le suivant : \n{decryptage(i,fichier)}")
             return i, decryptage(i,fichier)
