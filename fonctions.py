@@ -10,7 +10,7 @@ def enlever_caracteres_speciaux(mot):
     normalized_word = unicodedata.normalize('NFKD',mot)
     return ''.join([char for char in normalized_word if not unicodedata.combining(char)])
 
-#ouvrir le fichier et renvoyer la liste
+#ouvrir le fichier et renvoyer la liste, exemple lire_fichier("texte_code.txt")
 def lire_fichier(fichier):
     #tester si le fichier existe
     if not os.path.isfile(fichier):
@@ -51,17 +51,42 @@ def cryptage(liste, cle_de_cryptage):           #Fonction qui crypte le texte av
     return liste                                #On retourne la liste crypté
 
 def decryptage(cle,fichier="message_encrypte.txt"):
+    import string
     alphabet = string.ascii_lowercase
     liste_alphabet = list(alphabet)
-    cle %= 26
     liste_texte = lire_fichier(fichier)
 
     for i in range(len(liste_texte)):
-        for j in liste_alphabet:
-            if liste_texte[i].lower() == j:
-                liste_texte[i] = alphabet[liste_alphabet.index(j) - cle]
+        for lettre in liste_alphabet:
+            if liste_texte[i].lower() == lettre:
+                index_original = alphabet.index(lettre)
+                index_dechiffre = index_original - cle
+                if index_dechiffre < 0:
+                    index_dechiffre %= 26
+                liste_texte[i] = alphabet[index_dechiffre]
+                break
     texte=""
     for i in liste_texte:
         texte += i
     print(texte)
     return texte
+
+#deviner si le texte est francais grâce à un dictionnaire trouvé sur https://github.com/chrplr/openlexicon/blob/master/datasets-info/Liste-de-mots-francais-Gutenberg/liste.de.mots.francais.frgut.txt
+def prévoir_bon_texte(liste_lettres):
+    score=0
+    texte = ''.join(liste_lettres)
+    # lire le dico (preciser l’encoding pour les accents)
+    f = open("liste.de.mots.francais.frgut.txt", "r", encoding='utf-8')
+    # recuperation des mots sous forme de liste
+    mots = f.read().split("\n")
+    f.close()
+    for i in mots:
+        if i in texte:
+            score+=1
+    #on compte le nombre de mots dans le texte
+    nb_mots=len(texte.split(" "))
+    #le texte est francais si plus de 80% des mots sont détectés comme francais
+    if score>0.8*nb_mots:
+        return True
+    else:
+        return False
