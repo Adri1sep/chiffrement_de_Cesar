@@ -81,13 +81,24 @@ def decryptage(cle,fichier="message_encrypte.txt"):
     print(texte)
     return texte
 
-#calculer proba
+#deviner si le texte est francais grâce à un dictionnaire trouvé sur https://github.com/chrplr/openlexicon/blob/master/datasets-info/Liste-de-mots-francais-Gutenberg/liste.de.mots.francais.frgut.txt
 def prévoir_bon_texte(liste_lettres):
+    score=0
     texte = ''.join(liste_lettres)
-    #premier test, lettres seules
-    test1=[" q "," w "," e "," r "," t "," y "," u "," i "," o "," p "," s "," d "," f "," g "," h "," j "," k "," l "," z "," x "," c "," v "," b "," n "," m "]
-    for i in test1:
+    # lire le dico (preciser l’encoding pour les accents)
+    f = open("liste.de.mots.francais.frgut.txt", "r", encoding='utf-8')
+    # recuperation des mots sous forme de liste
+    mots = f.read().split("\n")
+    f.close()
+    for i in mots:
         if i in texte:
-            return False
-    else:
+            score+=1
+    print(score)
+    #on compte le nombre de mots dans le texte
+    nb_mots=len(texte.split(" "))
+    print(nb_mots)
+    #le texte est francais si plus de 80% des mots sont détectés comme francais
+    if score>0.8*nb_mots:
         return True
+    else:
+        return False
