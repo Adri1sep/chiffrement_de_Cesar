@@ -1,7 +1,7 @@
 """Ce module permet de fournir des fonctions pour le chiffrement de César
 """
 
-import unicodedata, os
+import unicodedata, os, string
 
 #enlever les accents
 def enlever_caracteres_speciaux(mot):
@@ -37,7 +37,6 @@ def ecrire_fichier(contenu, fichier):
 
 #Fonction qui crypte le texte en entrée:
 def cryptage(liste, cle_de_cryptage):           #Fonction qui crypte le texte avec le chiffrement de César
-    import string
     alphabet = string.ascii_lowercase           #On créé une chaîne de caractères qui contient l'alphabet
     if cle_de_cryptage < 0 or cle_de_cryptage > 25:
         cle_de_cryptage %= 26
@@ -58,7 +57,6 @@ def cryptage(liste, cle_de_cryptage):           #Fonction qui crypte le texte av
     return texte_crypte                             #On retourne la chaine cryptée
 
 def decryptage(cle,fichier="message_encrypte.txt"):
-    import string
     alphabet = string.ascii_lowercase
     liste_alphabet = list(alphabet)
     liste_texte = lire_fichier(fichier)
