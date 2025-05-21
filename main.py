@@ -30,4 +30,3 @@ if __name__ == "__main__":
         cle = int(input("Quelle est votre clé de décryptage? "))
         fichier = input("Spécifier le fichier à décrypter: ")
         decryptage(cle)
-

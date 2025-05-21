@@ -9,7 +9,7 @@ def enlever_caracteres_speciaux(mot):
     normalized_word = unicodedata.normalize('NFKD',mot)
     return ''.join([char for char in normalized_word if not unicodedata.combining(char)])
 
-#ouvrir le fichier et renvoyer la liste
+#ouvrir le fichier et renvoyer la liste, exemple lire_fichier("texte_code.txt")
 def lire_fichier(fichier):
     #tester si le fichier existe
     if not os.path.isfile(fichier):
@@ -76,11 +76,10 @@ def decryptage(cle,fichier="message_encrypte.txt"):
     texte=""
     for i in liste_texte:
         texte += i
-    print(texte)
     return texte
 
 #deviner si le texte est francais grâce à un dictionnaire trouvé sur https://github.com/chrplr/openlexicon/blob/master/datasets-info/Liste-de-mots-francais-Gutenberg/liste.de.mots.francais.frgut.txt
-def prévoir_bon_texte(liste_lettres):
+def prevoir_bon_texte(liste_lettres):
     score=0
     texte = ''.join(liste_lettres)
     # lire le dico (preciser l’encoding pour les accents)
@@ -98,3 +97,15 @@ def prévoir_bon_texte(liste_lettres):
         return True
     else:
         return False
+
+def brute_force(fichier="message_encrypte.txt"):
+    alphabet = string.ascii_lowercase
+    liste_alphabet = list(alphabet)
+    for i in range(len(liste_alphabet)):
+        if prevoir_bon_texte(decryptage(i, fichier)):
+            print(f"La clé pour décrypter le fichier est : {i}")
+            print(f"Le message décrypté est le suivant : \n{decryptage(i,fichier)}")
+            return i, decryptage(i,fichier)
+        else:
+            continue
+    return None
