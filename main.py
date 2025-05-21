@@ -22,7 +22,4 @@ if __name__ == "__main__":
     texte = "motdepasseacrypter"
     liste = list(texte)
     liste_crypte = cryptage(liste, cle)
-
     print(liste_crypte)
-    cle = -20
-    decryptage(cle)
