@@ -14,7 +14,7 @@ import string
 #PROGRAMME PRINCIPAL
 if __name__ == "__main__":
     print("Bienvenue sur le chiffrement de César")
-    int(input("Voulez crypter (1) ou décrypter (0): "))
+    int(input("\nVoulez crypter (1) ou décrypter (0): "))
     cle = int(input("Quelle est votre clé de décryptage: "))
 
     # liste = lire_fichier("texte_code.txt")
@@ -24,5 +24,5 @@ if __name__ == "__main__":
     liste_crypte = cryptage(liste, cle)
 
     print(liste_crypte)
-    cle = 20
+    cle = -20
     decryptage(cle)
