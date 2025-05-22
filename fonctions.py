@@ -59,6 +59,7 @@ def cryptage(liste, cle_de_cryptage):           #Fonction qui crypte le texte av
     return texte_crypte                             #On retourne la chaine cryptée
 
 def decryptage(cle,liste):
+    liste = liste.copy()
     alphabet = string.ascii_lowercase
     liste_alphabet = list(alphabet)
     if cle < 0 or cle > 25:
@@ -92,7 +93,7 @@ def prevoir_bon_texte(liste_lettres):
     #on compte le nombre de mots dans le texte
     nb_mots=len(texte.split(" "))
     #le texte est francais si plus de 80% des mots sont détectés comme francais
-    if score>0.99*nb_mots:
+    if score>0.9*nb_mots:
         return True
     else:
         return False
@@ -101,7 +102,7 @@ def brute_force(liste):
     alphabet = string.ascii_lowercase
     liste_alphabet = list(alphabet)
     for i in range(len(liste_alphabet)):
-        if prevoir_bon_texte(decryptage(i, liste)) == True:
+        if prevoir_bon_texte(decryptage(i, liste)):
             print(f"La clé pour décrypter le fichier est : {i}")
             print(f"Le message décrypté est le suivant : \n{decryptage(i,liste)}")
             return i, decryptage(i,liste)
