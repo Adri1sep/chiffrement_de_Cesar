@@ -1,12 +1,11 @@
-
-'''---------------Mini-Projet A - Chiffrement de César----------------------
+"""---------------Mini-Projet A - Chiffrement de César----------------------
 
     - Kilian Berteaud
     - Adrien Sepierre
     - Cyril Traineau
 
 Cours MGA802, Session Été 2025
-'''
+"""
 
 #PROGRAMME PRINCIPAL
 
@@ -28,7 +27,7 @@ if __name__ == "__main__":
             liste = lire_fichier(fichier)
 
         elif console_ou_fichier == "1":
-            liste = list(input("Ecrivez votre message: "))
+            liste = list(input("Écrivez votre message: "))
             # print("message en liste", liste)
 
         cle = choix_cle()
