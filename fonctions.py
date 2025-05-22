@@ -1,8 +1,7 @@
 """Ce module permet de fournir des fonctions pour le chiffrement de César
 """
 
-import unicodedata, os
-import string
+import unicodedata, os, string
 
 #enlever les accents
 def enlever_caracteres_speciaux(mot):
@@ -10,7 +9,7 @@ def enlever_caracteres_speciaux(mot):
     normalized_word = unicodedata.normalize('NFKD',mot)
     return ''.join([char for char in normalized_word if not unicodedata.combining(char)])
 
-#ouvrir le fichier et renvoyer la liste
+#ouvrir le fichier et renvoyer la liste, exemple lire_fichier("message.txt")
 def lire_fichier(fichier):
     #tester si le fichier existe
     if not os.path.isfile(fichier):
@@ -39,19 +38,25 @@ def ecrire_fichier(contenu, fichier):
 #Fonction qui crypte le texte en entrée:
 def cryptage(liste, cle_de_cryptage):           #Fonction qui crypte le texte avec le chiffrement de César
     alphabet = string.ascii_lowercase           #On créé une chaîne de caractères qui contient l'alphabet
+    if cle_de_cryptage < 0 or cle_de_cryptage > 25:
+        cle_de_cryptage %= 26
     for indice in range(len(liste)):            #On parcourt la liste de mots à crypter
-        index = alphabet.find(liste[indice])    #On récupère la position dans l'alphabet de la lettre issu de la liste
-        decalage = index + cle_de_cryptage      #On récupère le décalage souhaité en fonction de la clé de cryptage
-        if decalage > 25:                       #Les indices de l'alphabet vont de 0 à 25, on veut rester dans cette marge
-            decalage = decalage - 26            #En retranchant 26 on revient au début de l'alphabet
-        elif decalage < -26:                    #Si la clé est négative, décalage vers la gauche dans l'alphabet
-            decalage = decalage + 25            #On rajoute 25, pour rester dans l'alphabet
-        new_character = alphabet[decalage]      #La lettre cryptée est prise dans l'alphabet avec sa nouvelle position
-        liste[indice] = new_character           #La lettre initiale est remplacée par la lettre cryptée.
-    return liste                                #On retourne la liste crypté
+        if liste[indice].lower() in alphabet:           #Si la lettre est dans l'alphabet, permet de ne pas crypter les ponctuations
+            index = alphabet.find(liste[indice].lower())    #On récupère la position dans l'alphabet de la lettre issu de la liste
+            # print("Indice dans la liste: ", indice, "Lettre", liste[indice], "Index alphabet", index)
+            decalage = index + cle_de_cryptage      #On récupère le décalage souhaité en fonction de la clé de cryptage
+            if decalage > 25:                       #Les indices de l'alphabet vont de 0 à 25, on veut rester dans cette marge
+                decalage %= 26                      #En retranchant 26 on revient au début de l'alphabet
+            # elif decalage < -26:                    #Si la clé est négative, décalage vers la gauche dans l'alphabet
+            #     decalage = decalage + 25            #On rajoute 25, pour rester dans l'alphabet
+            new_character = alphabet[decalage]      #La lettre cryptée est prise dans l'alphabet avec sa nouvelle position
+            liste[indice] = new_character           #La lettre initiale est remplacée par la lettre cryptée.
+    texte_crypte = ""                               #On créé une chaîne de caractères vides destiné à recevoir le msg
+    for i in liste:                                 #On parcourt notre liste
+        texte_crypte += i                           #Chaque caractère de la liste est ajouté à notre texte
+    return texte_crypte                             #On retourne la chaine cryptée
 
-def decryptage(cle,fichier="message_encrypte.txt"):
-    import string
+def decryptage(cle,fichier):
     alphabet = string.ascii_lowercase
     liste_alphabet = list(alphabet)
     liste_texte = lire_fichier(fichier)
@@ -72,7 +77,7 @@ def decryptage(cle,fichier="message_encrypte.txt"):
     return texte
 
 #deviner si le texte est francais grâce à un dictionnaire trouvé sur https://github.com/chrplr/openlexicon/blob/master/datasets-info/Liste-de-mots-francais-Gutenberg/liste.de.mots.francais.frgut.txt
-def prévoir_bon_texte(liste_lettres):
+def prevoir_bon_texte(liste_lettres):
     score=0
     texte = ''.join(liste_lettres)
     # lire le dico (preciser l’encoding pour les accents)
@@ -91,14 +96,14 @@ def prévoir_bon_texte(liste_lettres):
     else:
         return False
 
-def brute_force(fichier="message_encrypte.txt"):
+def brute_force(fichier):
     alphabet = string.ascii_lowercase
     liste_alphabet = list(alphabet)
-    liste_texte = lire_fichier(fichier)
     for i in range(len(liste_alphabet)):
-        if prévoir_bon_texte(decryptage(i,fichier)) == True:
+        if prevoir_bon_texte(decryptage(i, fichier)):
             print(f"La clé pour décrypter le fichier est : {i}")
             print(f"Le message décrypté est le suivant : \n{decryptage(i,fichier)}")
             return i, decryptage(i,fichier)
         else:
             continue
+    return None
