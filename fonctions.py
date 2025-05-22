@@ -106,3 +106,35 @@ def brute_force(liste):
         else:
             continue
     return None
+
+def choix_utilisateur(action):
+    if action == 1:
+        while True:
+            choix = input(
+                "Voulez-vous crypter ou decrypter ? Crypter (0) / Decrypter (1) : ")
+            if choix in ("0", "1"):
+                return choix
+            print("Veuillez entrer 0 ou 1.")
+    elif action == 2:
+        while True:
+            choix = input(
+                "Voulez-vous crypter un fichier ou écrire votre message ? Fichier (0) / Écrire (1) : ")
+            if choix in ("0", "1"):
+                return choix
+            print("Veuillez entrer 0 ou 1.")
+    elif action == 3:
+        while True:
+            choix = input(
+                "Connaissez-vous la clé de décryptage ? Non (0) / Oui (1) : ")
+            if choix in ("0", "1"):
+                return choix
+            print("Veuillez entrer 0 ou 1.")
+    return None
+
+def choix_cle():
+    cle_str = input("Quelle est votre clé de décryptage? ")
+    while not cle_str.isdigit():
+        print("Veuillez entrer un nombre entier.")
+        cle_str = input("Quelle est votre clé de décryptage ? ")
+    cle = int(cle_str)
+    return cle
