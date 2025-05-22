@@ -46,8 +46,8 @@ if __name__ == "__main__":
             cle = int(input("Quelle est votre clé de décryptage? "))
 
             fichier = input("Spécifier le fichier à décrypter: ")
-
-            texte_decrypte = decryptage(cle, fichier)
+            liste = lire_fichier(fichier)
+            texte_decrypte = decryptage(cle, liste)
 
             print("\nVotre message décrypté est le suivant:")
 
@@ -62,8 +62,8 @@ if __name__ == "__main__":
         elif cle_connue == 0:
 
             fichier = input("Spécifier le fichier à décrypter en brute force: ")
-
-            message = brute_force(fichier)[1]
+            liste = lire_fichier(fichier)
+            message = brute_force(liste)[1]
 
             maj1 = input("Voulez-vous mettre à jour le fichier texte avec cette version? Oui(1) / Non (0): ")
 

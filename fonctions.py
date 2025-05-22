@@ -54,31 +54,23 @@ def cryptage(liste, cle_de_cryptage):
         elif decalage < -26:
             decalage = decalage + 25
 
-        new_character = alphabet[decalage]
-        # print("new_character", new_character)
-        liste[indice] = new_character
-    return liste
-
-def decryptage(cle,fichier="message_encrypte.txt"):
-    import string
+def decryptage(cle,liste):
     alphabet = string.ascii_lowercase
     liste_alphabet = list(alphabet)
-    liste_texte = lire_fichier(fichier)
     if cle < 0 or cle > 25:
         cle %= 26
-    for i in range(len(liste_texte)):
+    for i in range(len(liste)):
         for lettre in liste_alphabet:
-            if liste_texte[i].lower() == lettre:
+            if liste[i].lower() == lettre:
                 index_original = alphabet.index(lettre)
                 index_dechiffre = index_original - cle
                 if index_dechiffre < 0:
                     index_dechiffre %= 26
-                liste_texte[i] = alphabet[index_dechiffre]
+                liste[i] = alphabet[index_dechiffre]
                 break
     texte=""
-    for i in liste_texte:
+    for i in liste:
         texte += i
-    print(texte)
     return texte
 
 #deviner si le texte est francais grâce à un dictionnaire trouvé sur https://github.com/chrplr/openlexicon/blob/master/datasets-info/Liste-de-mots-francais-Gutenberg/liste.de.mots.francais.frgut.txt
@@ -101,14 +93,14 @@ def prevoir_bon_texte(liste_lettres):
     else:
         return False
 
-def brute_force(fichier):
+def brute_force(liste):
     alphabet = string.ascii_lowercase
     liste_alphabet = list(alphabet)
     for i in range(len(liste_alphabet)):
-        if prevoir_bon_texte(decryptage(i, fichier)):
+        if prevoir_bon_texte(decryptage(i, liste)):
             print(f"La clé pour décrypter le fichier est : {i}")
-            print(f"Le message décrypté est le suivant : \n{decryptage(i,fichier)}")
-            return i, decryptage(i,fichier)
+            print(f"Le message décrypté est le suivant : \n{decryptage(i,liste)}")
+            return i, decryptage(i,liste)
         else:
             continue
     return None
