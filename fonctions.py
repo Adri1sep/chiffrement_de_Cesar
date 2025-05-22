@@ -40,7 +40,9 @@ def cryptage(liste, cle_de_cryptage):           #Fonction qui crypte le texte av
     alphabet = string.ascii_lowercase           #On créé une chaîne de caractères qui contient l'alphabet
     if cle_de_cryptage < 0 or cle_de_cryptage > 25:
         cle_de_cryptage %= 26
-    for indice in range(len(liste)):            #On parcourt la liste de mots à crypter
+    for indice in range(len(liste)):
+        liste[indice] = enlever_caracteres_speciaux(liste[indice])
+        #On parcourt la liste de mots à crypter
         if liste[indice].lower() in alphabet:           #Si la lettre est dans l'alphabet, permet de ne pas crypter les ponctuations
             index = alphabet.find(liste[indice].lower())    #On récupère la position dans l'alphabet de la lettre issu de la liste
             # print("Indice dans la liste: ", indice, "Lettre", liste[indice], "Index alphabet", index)
@@ -90,7 +92,7 @@ def prevoir_bon_texte(liste_lettres):
     #on compte le nombre de mots dans le texte
     nb_mots=len(texte.split(" "))
     #le texte est francais si plus de 80% des mots sont détectés comme francais
-    if score>0.8*nb_mots:
+    if score>0.99*nb_mots:
         return True
     else:
         return False
@@ -99,7 +101,7 @@ def brute_force(liste):
     alphabet = string.ascii_lowercase
     liste_alphabet = list(alphabet)
     for i in range(len(liste_alphabet)):
-        if prevoir_bon_texte(decryptage(i, liste)):
+        if prevoir_bon_texte(decryptage(i, liste)) == True:
             print(f"La clé pour décrypter le fichier est : {i}")
             print(f"Le message décrypté est le suivant : \n{decryptage(i,liste)}")
             return i, decryptage(i,liste)
