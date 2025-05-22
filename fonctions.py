@@ -58,6 +58,7 @@ def cryptage(liste, cle_de_cryptage):           #Fonction qui crypte le texte av
         texte_crypte += i                           #Chaque caractère de la liste est ajouté à notre texte
     return texte_crypte                             #On retourne la chaine cryptée
 
+
 def decryptage(cle,liste):
     liste = liste.copy()
     alphabet = string.ascii_lowercase
@@ -136,7 +137,7 @@ def choix_utilisateur(action):
 
 def choix_cle():
     cle_str = input("Quelle est votre clé de décryptage? ")
-    while not cle_str.isdigit():
+    while not (cle_str.isdigit() or (cle_str[0] == "-" and cle_str[1:].isdigit())):
         print("Veuillez entrer un nombre entier.")
         cle_str = input("Quelle est votre clé de décryptage ? ")
     cle = int(cle_str)
