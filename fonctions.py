@@ -160,11 +160,11 @@ def choix_utilisateur(action):
 
 def choix_cle():
     # Demande à l'utilisateur de saisir la clé
-    cle_str = input("Quelle est votre clé de décryptage? ")
+    cle_str = input("Quelle est votre clé? ")
     # Tant que ce n'est pas un entier (ou un entier négatif), on redemande
     while not (cle_str.isdigit() or (cle_str[0] == "-" and cle_str[1:].isdigit())):
         print("Veuillez entrer un nombre entier.")
-        cle_str = input("Quelle est votre clé de décryptage ? ")
+        cle_str = input("Quelle est votre clé? ")
     # Conversion de la clé en entier
     cle = int(cle_str)
     return cle
