@@ -93,22 +93,31 @@ def decryptage(cle, liste):
 #deviner si le texte est francais grâce à un dictionnaire trouvé sur https://github.com/chrplr/openlexicon/blob/master/datasets-info/Liste-de-mots-francais-Gutenberg/liste.de.mots.francais.frgut.txt
 def prevoir_bon_texte(liste_lettres):
     score=0
-    texte = ''.join(liste_lettres)
+    #on rajoute des espaces pour la bonne detection des mots
+    texte = " "+''.join(liste_lettres)+" "
     # lire le dico (preciser l’encoding pour les accents)
     f = open("liste.de.mots.francais.frgut.txt", "r", encoding='utf-8')
     # recuperation des mots sous forme de liste
     mots = f.read().split("\n")
     f.close()
     for i in mots:
-        if i in texte:
+        if (" "+i+" " in texte or "’"+i+" " in texte or " "+i+"." in texte or " "+i+"," in texte or "("+i+" " in texte or " "+i+")" in texte) and (not i==""):
+        #if i in texte and (not i==""):
             score+=1
     #on compte le nombre de mots dans le texte
-    nb_mots=len(texte.split(" "))
-    #le texte est francais si plus de 80% des mots sont détectés comme francais
-    if score>0.9*nb_mots:
-        return True
-    else:
-        return False
+    texte=texte.replace("’"," ")
+    nb_mots=len(texte.split(" "))-2 #on enleve 2 car le rajout des espaces au texte ajoute deux mots vides
+    #le texte est francais si plus de 50% des mots sont détectés comme francais
+    if nb_mots<=10:
+        if (score >= 0.5 * nb_mots):
+            return True
+        else:
+            return False
+    elif nb_mots>10:
+        if (score >= 0.25 * nb_mots):
+            return True
+        else:
+            return False
 
 
 def brute_force(liste):
