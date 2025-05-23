@@ -34,6 +34,7 @@ def ecrire_fichier(contenu, fichier):
     f.seek(0)
     f.write(contenu)
     f.close()
+
 #Fonction qui crypte le texte en entrée :
 def cryptage(liste, cle_de_cryptage):           #Fonction qui crypte le texte avec le chiffrement de César
     import string
